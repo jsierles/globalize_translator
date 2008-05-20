@@ -1,0 +1,7 @@
+author: Joshua Sierles
+summary: Translate your application screen by screen, unobtrusively
+homepage: http://diluvia.net/globalize_translator
+plugin: http://svn.diluvia.net/rails_plugins/globalize_translator
+license: MIT
+version: 0.1
+rails_version: 1.2+

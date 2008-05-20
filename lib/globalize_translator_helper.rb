@@ -1,0 +1,2 @@
+module GlobalizeTranslatorHelper
+end

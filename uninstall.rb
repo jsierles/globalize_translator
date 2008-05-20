@@ -1,0 +1,2 @@
+FileUtils.rm_rf File.join(File.dirname(__FILE__), '../../../public/pt_window')  rescue nil
+FileUtils.rm_rf File.join(File.dirname(__FILE__), '../../../public/stylesheets/globalize_translator.css') rescue nil

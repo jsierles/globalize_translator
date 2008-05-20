@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Translation Page</title>
+        <style type="text/css" media=screen>
+        <!--
+            body            { font-family: arial; background-color: #E5E5E5 }
+            th                { font-weight: bold  }
+            td                { border: thin dotted #800080; padding: 4px }
+        -->
+        </style>        <%= javascript_include_tag :defaults %>
+    </head>
+    <body>
+        <div><form method="get"><select id="language" name="language"><%= options_for_select(::Globalize::Language.select_options, @lang_id) %></select> <%= submit_tag "Change Language" %></form></div>
+        <table>
+            <tr><th>id</th><th>key</th><th>quantity</th><th>translation</th></tr>
+            <% @view_translations.each do |tr| %>
+            <tr><td><%= tr.id %></td><td><%= tr.tr_key %></td><td><%= tr.pluralization_index %></td>
+            <td><span id="tr_<%= tr.id %>">
+            <%= render :partial => 'translation_text', :object => tr.text %>
+            </span></td></tr>
+            <%= in_place_editor "tr_#{tr.id}", :url => { :action => :set_translation_text, 
+            :id => tr.id }, 
+            :load_text_url => url_for({ :action => :translation_text, :id => tr.id }) %>
+            <% end %>
+        </table>
+	</body>
+</html>
+

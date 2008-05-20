@@ -1,0 +1,46 @@
+Globalize Translator
+====================
+
+This plugin installs a convenient interface for translating globalize translation strings.
+
+== INSTALLATION
+
+The translator js and css files should be copied to public upon plugin installation. If they aren't, or you have recently updated the plugin, run:
+
+  rake globalize:update_translator_assets
+
+== USAGE
+
+The translator includes a helper for switching locales, and another for including all the necessary stylesheets and javascript files.
+
+Place the following helpers wherever you want them in your app views:
+
+	<%= includes_for_translator %>
+
+	<%= select_for_translator %>
+
+The select box here requires that setting params[:locale] will switch the locale. It simply
+reloads the current URL with the locale parameter.
+
+To activate the translator, add this method to any controller class:
+
+	globalize_translator
+	
+To only activate the translator when a certain condition is met, pass a method argument as a symbol:
+
+	globalize_translator :if => :admin?
+
+The translator appears in a DOM popup. Translate away, per locale. When you are done editing, hit enter or the save button. The current page should load
+with the new translation strings in place. States such as errors, ajax calls, and basically anything that isn't visible on a normal page load will not be easily translatable yet.
+
+GOTCHAS
+
+Globalize uses an internal per-process cache for view translations, so they are only loaded once per Rails instance. Since this complicates the translation process, the cache
+is bypassed while in 'translation mode'. This will necessarily slow down the request/response cycle, so be sure to turn off the translator when benchmarking your app.
+
+Another side-effect of this is that translations are only visible to the current translator user until the Rails instance is restarted. This is not a 'preview'. Once the translations are updated, they can't be reverted.
+
+CREDITS
+
+Written by Joshua Sierles
+Based on code from Rick Olson's Routing Navigator plugin

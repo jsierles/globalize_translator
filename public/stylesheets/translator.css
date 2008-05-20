@@ -1,0 +1,13 @@
+.dialog table input {
+  border: 1px solid #ccc;
+  width: 80%;
+  vertical-align: top;
+}
+
+.dialog table td, .dialog table tr {
+  vertical-align: top;  
+}
+
+.dialog table td {
+  border-bottom: 1px dashed #aaa;
+}
